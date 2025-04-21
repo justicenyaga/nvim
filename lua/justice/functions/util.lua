@@ -1,4 +1,5 @@
 local api = vim.api
+local flutter_commands = require("justice.functions.flutter_commands_list")
 
 local function press_enter()
 	api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, true, true), "n", true)
@@ -67,6 +68,35 @@ local function open_in_tab(buf_name, starts_with, open_fn)
 	end
 end
 
+local function get_lsp_capabilities()
+	return require("blink.cmp").get_lsp_capabilities()
+end
+
+local function lsp_on_attach(_, bufnr)
+	local opts = { noremap = true, silent = true }
+	opts.buffer = bufnr
+
+	-- set keybinds
+	opts.desc = "See available code actions"
+	vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
+
+	opts.desc = "Rename"
+	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
+
+	opts.desc = "Go to previous diagnostic"
+	vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
+
+	opts.desc = "Go to next diagnostic"
+	vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
+
+	-- opts.desc = "Show documentation for what is under cursor"
+	-- vim.keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
+end
+
+local function get_flutter_commands()
+	return flutter_commands
+end
+
 return {
 	basename = basename,
 	branch_exists = branch_exists,
@@ -75,4 +105,7 @@ return {
 	press_enter = press_enter,
 	string_starts = string_starts,
 	open_in_tab = open_in_tab,
+	get_lsp_capabilities = get_lsp_capabilities,
+	lsp_on_attach = lsp_on_attach,
+	get_flutter_commands = get_flutter_commands,
 }

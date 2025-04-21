@@ -22,6 +22,8 @@ return {
 		-- Add lorem ipsum snippets to all file types
 		luasnip.filetype_extend("all", { "loremipsum" })
 
+		vim.api.nvim_set_hl(0, "BlinkCmpKindCodeium", { fg = "#21d4fd" })
+
 		require("blink-cmp").setup({
 			enabled = function()
 				local disabled_filetypes =
@@ -50,22 +52,53 @@ return {
 				},
 			},
 			sources = {
-				default = { "codeium", "lsp", "snippets", "buffer", "path" },
+				default = {
+					"codeium",
+					"obsidian",
+					"obsidian_new",
+					"obsidian_tags",
+					"lsp",
+					"snippets",
+					"buffer",
+					"path",
+				},
+				per_filetype = {
+					sql = { "snippets", "dadbod", "buffer" },
+				},
 				providers = {
 					dadbod = {
 						name = "Dadbod",
 						module = "vim_dadbod_completion.blink",
 					},
 					codeium = {
-						name = "codeium",
-						enabled = true,
-						module = "blink.compat.source",
+						name = "Codeium",
+						module = "codeium.blink",
+						enabled = false,
 						async = true,
+						transform_items = function(_, items)
+							for _, item in ipairs(items) do
+								item.kind_icon = "󱃖"
+								item.kind_name = "Codeium"
+							end
+							return items
+						end,
+					},
+					obsidian = {
+						name = "obsidian",
+						module = "blink.compat.source",
+					},
+					obsidian_new = {
+						name = "obsidian_new",
+						module = "blink.compat.source",
+					},
+					obsidian_tags = {
+						name = "obsidian_tags",
+						module = "blink.compat.source",
 					},
 				},
 			},
 			signature = {
-				enabled = true,
+				enabled = false,
 				window = { treesitter_highlighting = false },
 			},
 			completion = {
@@ -84,16 +117,20 @@ return {
 						treesitter = { "lsp" },
 						components = {
 							kind_icon = {
-								text = function(ctx)
-									local icon = ctx.item.source_name == "codeium" and "󱃖" or ctx.kind_icon
-									return icon .. ctx.icon_gap
+								highlight = function(ctx)
+									if ctx.item.source_name == "Codeium" then
+										return {
+											{ group = "BlinkCmpKindCodeium", priority = 20000 },
+										}
+									else
+										return {
+											{ group = ctx.kind_hl, priority = 20000 },
+										}
+									end
 								end,
 							},
 						},
 					},
-					auto_show = function(ctx)
-						return ctx.mode ~= "cmdline"
-					end,
 				},
 			},
 			appearance = {

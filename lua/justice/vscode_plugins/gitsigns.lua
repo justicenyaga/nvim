@@ -15,28 +15,27 @@ return {
 					vim.keymap.set(mode, l, r, opts)
 				end
 
-				-- Navigation
 				-- move to the next hunk
-				map("n", "]h", function()
-					if vim.wo.diff then
-						return "]h"
-					end
-					vim.schedule(function()
-						gs.next_hunk()
-					end)
-					return "<Ignore>"
-				end, { expr = true, desc = "Move to the next hunk" })
-
-				-- move to the previous hunk
-				map("n", "[h", function()
-					if vim.wo.diff then
-						return "[h"
-					end
-					vim.schedule(function()
-						gs.prev_hunk()
-					end)
-					return "<Ignore>"
-				end, { expr = true, desc = "Move to the previous hunk" })
+				-- map("n", "]h", function()
+				-- 	if vim.wo.diff then
+				-- 		return "]h"
+				-- 	end
+				-- 	vim.schedule(function()
+				-- 		gs.next_hunk()
+				-- 	end)
+				-- 	return "<Ignore>"
+				-- end, { expr = true, desc = "Move to the next hunk" })
+				--
+				-- -- move to prev hunk
+				-- map("n", "[h", function()
+				-- 	if vim.wo.diff then
+				-- 		return "[h"
+				-- 	end
+				-- 	vim.schedule(function()
+				-- 		gs.prev_hunk()
+				-- 	end)
+				-- 	return "<Ignore>"
+				-- end, { expr = true, desc = "Move to the previous hunk" })
 
 				-- Actions
 				map("n", "<leader>gA", gs.stage_hunk, { desc = "Stage hunk under cursor" })
@@ -48,7 +47,7 @@ return {
 					gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 				end, { desc = "Reset selected hunk" })
 				map("n", "<leader>gU", gs.undo_stage_hunk, { desc = "Unstage last staged hunk" })
-				map("n", "<leader>gv", gs.preview_hunk, { desc = "Preview hunk" })
+				-- map("n", "<leader>gv", gs.preview_hunk, { desc = "Preview hunk" })
 				map("n", "<leader>gm", function()
 					gs.blame_line({ full = true })
 				end, { desc = "Blame hunk under cursor" })

@@ -2,54 +2,56 @@ return {
 	"folke/snacks.nvim",
 	priority = 1000,
 	lazy = false,
-	opts = {
-		bigfile = { enabled = true },
-		notifier = { enabled = true },
-		quickfile = { enabled = false },
-		words = { enabled = true },
-		input = { enabled = true },
-		picker = {
-			enabled = true,
-			formatters = {
-				file = {
-					filename_first = true,
+	opts = function()
+		return {
+			bigfile = { enabled = true },
+			quickfile = { enabled = false },
+			words = { enabled = true },
+			input = { enabled = true },
+			notifier = { enabled = true, style = "fancy" },
+			picker = {
+				enabled = true,
+				formatters = {
+					file = {
+						-- filename_first = true,
+					},
+				},
+				win = {
+					input = {
+						keys = {
+							["<C-f>"] = { "toggle_follow", mode = { "i", "n" } },
+							["<C-h>"] = { "toggle_hidden", mode = { "i", "n" } },
+							["<C-p>"] = { "toggle_preview", mode = { "i", "n" } },
+							["<C-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
+							["<C-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
+						},
+					},
+					list = {
+						keys = {
+							["<C-f>"] = "toggle_follow",
+							["<C-h>"] = "toggle_hidden",
+							["<C-p>"] = "toggle_preview",
+							["<C-d>"] = "preview_scroll_down",
+							["<C-u>"] = "preview_scroll_up",
+						},
+					},
 				},
 			},
-			win = {
+			statuscolumn = {
+				enabled = true,
+				folds = { open = true },
+				right = { "git", "fold" },
+			},
+			styles = {
 				input = {
-					keys = {
-						["<C-f>"] = { "toggle_follow", mode = { "i", "n" } },
-						["<C-h>"] = { "toggle_hidden", mode = { "i", "n" } },
-						["<C-p>"] = { "toggle_preview", mode = { "i", "n" } },
-						["<C-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
-						["<C-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
-					},
-				},
-				list = {
-					keys = {
-						["<C-f>"] = "toggle_follow",
-						["<C-h>"] = "toggle_hidden",
-						["<C-p>"] = "toggle_preview",
-						["<C-d>"] = "preview_scroll_down",
-						["<C-u>"] = "preview_scroll_up",
-					},
+					relative = "cursor",
+					row = 1,
+					col = 0,
+					width = 40,
 				},
 			},
-		},
-		statuscolumn = {
-			enabled = true,
-			folds = { open = true },
-			right = { "git", "fold" },
-		},
-		styles = {
-			input = {
-				relative = "cursor",
-				row = 1,
-				col = 0,
-				width = 40,
-			},
-		},
-	},
+		}
+	end,
 	keys = {
 		{
 			"<c-t>",
@@ -125,16 +127,16 @@ return {
 		{
 			"<leader>fs",
 			function()
-				Snacks.picker.lsp_workspace_symbols()
+				Snacks.picker.lsp_symbols({ layout = { preset = "vscode", preview = "main" } })
 			end,
-			desc = "Find workspace symbols",
+			desc = "Find document symbols",
 		},
 		{
 			"<leader>fS",
 			function()
-				Snacks.picker.lsp_symbols()
+				Snacks.picker.lsp_workspace_symbols({ layout = { preset = "vscode", preview = "main" } })
 			end,
-			desc = "Find document symbols",
+			desc = "Find workspace symbols",
 		},
 		{
 			"<leader>fb",
@@ -167,7 +169,7 @@ return {
 		{
 			"<leader>fC",
 			function()
-				Snacks.picker.colorschemes()
+				Snacks.picker.colorschemes({ layout = { preset = "vscode", preview = "main" } })
 			end,
 			desc = "Colorscheme",
 		},
@@ -186,37 +188,49 @@ return {
 			desc = "Find obsidian notes",
 		},
 		{
+			"<leader>ft",
+			"<cmd>TodoQuickFix<CR>",
+			desc = "Find todos",
+		},
+		{
+			"<leader>nh",
+			function()
+				Snacks.notifier.show_history()
+			end,
+			desc = "Show notifications history",
+		},
+		{
 			"gf",
 			function()
-				Snacks.picker.lsp_references()
+				Snacks.picker.lsp_references({ layout = { preset = "vscode", preview = "main" } })
 			end,
 			desc = "Show lsp references",
 		},
 		{
 			"gD",
 			function()
-				Snacks.picker.lsp_declarations()
+				Snacks.picker.lsp_declarations({ layout = { preset = "vscode", preview = "main" } })
 			end,
 			desc = "Go to declaration",
 		},
 		{
 			"gd",
 			function()
-				Snacks.picker.lsp_definitions()
+				Snacks.picker.lsp_definitions({ layout = { preset = "vscode", preview = "main" } })
 			end,
 			desc = "Go to definition",
 		},
 		{
 			"gi",
 			function()
-				Snacks.picker.lsp_implementations()
+				Snacks.picker.lsp_implementations({ layout = { preset = "vscode", preview = "main" } })
 			end,
 			desc = "Go to implementation",
 		},
 		{
 			"gt",
 			function()
-				Snacks.picker.lsp_type_definitions()
+				Snacks.picker.lsp_type_definitions({ layout = { preset = "vscode", preview = "main" } })
 			end,
 			desc = "Go to type definition",
 		},
@@ -226,6 +240,7 @@ return {
 				Snacks.words.jump(vim.v.count1)
 			end,
 			desc = "Next reference",
+			mode = { "n", "t" },
 		},
 		{
 			"[[",
@@ -233,6 +248,7 @@ return {
 				Snacks.words.jump(-vim.v.count1)
 			end,
 			desc = "Prev reference",
+			mode = { "n", "t" },
 		},
 	},
 }

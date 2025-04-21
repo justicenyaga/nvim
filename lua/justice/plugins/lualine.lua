@@ -5,6 +5,10 @@ return {
 		local lualine = require("lualine")
 		local lazy_status = require("lazy.status") -- to configure lazy pending updates count
 
+		local function flutter_tools_available()
+			return require("flutter-tools.commands").is_running()
+		end
+
 		local colors = {
 			blue = "#00AFFF",
 			green = "#3EFFDC",
@@ -14,9 +18,9 @@ return {
 			fg = "#c3ccdc",
 			bg = "#112638",
 			inactive_bg = "#2c3043",
+			faded_fg = "#9aa5ce",
 			semilightgray = "#6c7086",
 		}
-
 		local my_lualine_theme = {
 			normal = {
 				a = { bg = colors.blue, fg = colors.bg, gui = "bold" },
@@ -50,13 +54,30 @@ return {
 			},
 		}
 
-		-- configure lualine with modified theme
 		lualine.setup({
 			options = {
 				theme = my_lualine_theme,
 			},
 			sections = {
+				lualine_c = {
+					{ "filename", color = { fg = colors.faded_fg } },
+				},
 				lualine_x = {
+					{
+						function()
+							if flutter_tools_available() then
+								local device = vim.g.flutter_tools_decorations.device
+								local device_name = device and (device.name or device.id) or ""
+								if device_name ~= "" then
+									return " " .. device_name
+								end
+							end
+							return ""
+						end,
+						color = { fg = "#12b9fd" },
+						cond = flutter_tools_available,
+					},
+					{ "kulala" },
 					{
 						lazy_status.updates,
 						cond = lazy_status.has_updates,
@@ -65,6 +86,11 @@ return {
 					{ "encoding" },
 					{ "fileformat" },
 					{ "filetype" },
+				},
+			},
+			inactive_sections = {
+				lualine_c = {
+					"filename",
 				},
 			},
 		})

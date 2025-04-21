@@ -2,6 +2,7 @@ return {
 	"mfussenegger/nvim-dap",
 	dependencies = {
 		"rcarriga/nvim-dap-ui",
+		"theHamsta/nvim-dap-virtual-text",
 		"nvim-neotest/nvim-nio",
 		"mxsdev/nvim-dap-vscode-js",
 		{
@@ -11,7 +12,7 @@ return {
 		},
 	},
 	lazy = true,
-	event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		-- import nvim-dap plugin
 		local dap = require("dap")
@@ -27,6 +28,9 @@ return {
 			debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug",
 			adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
 		})
+
+		-- seutp dap-virtual-text
+		require("nvim-dap-virtual-text").setup()
 
 		dap.configurations = {
 			go = {
@@ -133,39 +137,40 @@ return {
 			},
 		}
 
-		dap.listeners.after.event_initialized["dapui_config"] = function()
-			dapui.open({ reset = true })
+		dap.listeners.before.attach.dapui_config = function()
+			dapui.open()
 		end
-
-		dap.listeners.before.event_terminated["dapui_config"] = dapui.close
-		dap.listeners.before.event_exited["dapui_config"] = dapui.close
+		dap.listeners.before.launch.dapui_config = function()
+			dapui.open()
+		end
+		dap.listeners.before.event_terminated.dapui_config = function()
+			dapui.close()
+		end
+		dap.listeners.before.event_exited.dapui_config = function()
+			dapui.close()
+		end
 
 		vim.fn.sign_define("DapBreakpoint", { text = "🐞" })
 
-		-- Start debuggin sessions
-		keymap.set("n", "<F5>", function()
-			dap.continue()
-			dapui.open({})
-			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>=", false, true, true), "n", false) -- Spaces buffers evenly
-		end, { desc = "Start debugging session" })
-		keymap.set("n", "<F3>", require("dap.ui.widgets").hover, { desc = "Evaluate objects on the current step" })
-		keymap.set("n", "<F5>", dap.continue, { desc = "Debugging Continue" })
-		keymap.set("n", "<F9>", dap.toggle_breakpoint, { desc = "Toggle Breakpoint on a Line" })
-		keymap.set("n", "<F10>", dap.step_over, { desc = "Step Over" })
-		keymap.set("n", "<F11>", dap.step_into, { desc = "Step into" })
-		keymap.set("n", "<F23>", dap.step_out, { desc = "Step Out" }) -- Shift + F11
-		keymap.set("n", "<F21>", function()
+		keymap.set("n", "<leader>bc", dap.continue, { desc = "Continue" })
+		keymap.set("n", "<leader>bk", function()
+			dapui.eval(nil, { enter = true })
+		end)
+		keymap.set("n", "<leader>bo", dap.step_over, { desc = "Step Over" })
+		keymap.set("n", "<leader>bi", dap.step_into, { desc = "Step into" })
+		keymap.set("n", "<leader>bO", dap.step_out, { desc = "Step Out" })
+		keymap.set("n", "<leader>bb", dap.toggle_breakpoint, { desc = "Toggle Breakpoint on a Line" })
+		keymap.set("n", "<leader>bB", function()
 			dap.clear_breakpoints()
-			Snacks.notify.info("Breakpoints cleared")
-		end, { desc = "Clear all Breakpoints" }) -- Shift + F9
+			vim.notify("Breakpoints cleared", vim.log.levels.INFO)
+		end, { desc = "Clear all Breakpoints" })
 
 		-- Close debugger and clear breakpoints
-		keymap.set("n", "<F17>", function() -- Shift + F5
+		keymap.set("n", "<leader>bq", function()
 			dap.clear_breakpoints()
-			dapui.close({})
 			dap.terminate()
 			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>=", false, true, true), "n", false) --
-			Snacks.notify.warn("Debug session ended")
+			vim.notify("Debug session ended", vim.log.levels.WARN)
 		end, { desc = "Close debugger and end debugging session" })
 
 		dapui.setup({
@@ -173,17 +178,38 @@ return {
 			layouts = {
 				{
 					elements = {
-						"scopes",
+						{
+							id = "scopes",
+							size = 0.25,
+						},
+						{
+							id = "watches",
+							size = 0.25,
+						},
+						{
+							id = "stacks",
+							size = 0.25,
+						},
+						{
+							id = "breakpoints",
+							size = 0.25,
+						},
 					},
-					size = 0.3,
-					position = "right",
+					size = 40,
+					position = "left",
 				},
 				{
 					elements = {
-						"repl",
-						"breakpoints",
+						{
+							id = "repl",
+							size = 0.5,
+						},
+						{
+							id = "console",
+							size = 0.5,
+						},
 					},
-					size = 0.3,
+					size = 10,
 					position = "bottom",
 				},
 			},

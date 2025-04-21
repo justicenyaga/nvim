@@ -1,7 +1,6 @@
 return {
 	{
 		"pmizio/typescript-tools.nvim",
-		event = { "BufReadPre", "BufNewFile" },
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 		ft = {
 			"typescript",
@@ -63,9 +62,9 @@ return {
 			})
 		end,
 	},
+
 	{
 		"dmmulroy/tsc.nvim",
-		event = { "BufReadPre", "BufNewFile" },
 		cmd = { "TSC" },
 		opts = {
 			auto_close_qflist = true,

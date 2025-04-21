@@ -12,6 +12,13 @@ opt.tabstop = 4 -- 4 spaces for tabs
 opt.shiftwidth = 4 -- 4 spaces for indent width
 opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "js", "ts", "jsx", "tsx", "json", "dart" },
+	callback = function()
+		vim.opt_local.tabstop = 2
+		vim.opt_local.shiftwidth = 2
+	end,
+})
 
 -- spell checking
 -- opt.spell = true -- turn on spell checking
@@ -75,6 +82,11 @@ if vim.fn.has("wsl") == 1 and not vim.g.vscode then
 	}
 end
 
+-- Use pwsh on windows
+if vim.fn.has("win32") == 1 then
+	vim.o.shell = "pwsh -NoLogo"
+end
+
 -- split windows
 opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
@@ -88,4 +100,4 @@ opt.shortmess:append("IWs") -- disable intro message and search hit BOTTOM, TOP 
 opt.swapfile = false
 
 -- conceal level
-opt.conceallevel = 0
+opt.conceallevel = 1

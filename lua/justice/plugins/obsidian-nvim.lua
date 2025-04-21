@@ -12,13 +12,14 @@ return {
 	--   "BufNewFile path/to/my-vault/*.md",
 	-- },
 	dependencies = {
-		-- Required.
 		"nvim-lua/plenary.nvim",
-
-		-- see below for full list of optional dependencies 👇
 	},
 	config = function()
 		require("obsidian").setup({
+			completion = {
+				nvim_cmp = true,
+				blink = true,
+			},
 			workspaces = {
 				{
 					name = "Deez Notes",

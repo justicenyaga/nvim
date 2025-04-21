@@ -1,6 +1,7 @@
 return {
 	"justicenyaga/arrow.nvim",
-	enabled = false,
+	-- "otavioschwanck/arrow.nvim",
+	branch = "feat/windows-fs-support",
 	config = function()
 		require("arrow").setup({
 			leader_key = "m",
@@ -19,7 +20,7 @@ return {
 			mappings = {
 				toggle = "a",
 				clear_all_items = "D",
-				open_vertical = "|",
+				open_vertical = "\\",
 				next_item = "n",
 				prev_item = "p",
 			},

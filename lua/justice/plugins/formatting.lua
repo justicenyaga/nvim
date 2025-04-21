@@ -1,14 +1,21 @@
 return {
 	"stevearc/conform.nvim",
 	lazy = true,
-	event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
+	event = { "BufReadPre", "BufNewFile" },
+	dependencies = {
+		{
+			"rust-lang/rust.vim",
+			ft = "rust",
+			init = function()
+				vim.g.rustfmt_autosave = 1
+			end,
+		},
+	},
 	config = function()
 		local conform = require("conform")
 
+		-- Create a variable to track the format-on-save state
 		local format_on_save_enabled = true
-
-		-- filetypes to disable format on save
-		local format_on_save_disabled_filetypes = {}
 
 		conform.setup({
 			formatters_by_ft = {
@@ -46,8 +53,7 @@ return {
 				},
 			},
 			format_on_save = function()
-				local is_file_disabled = vim.tbl_contains(format_on_save_disabled_filetypes, vim.bo.filetype)
-				if not format_on_save_enabled or is_file_disabled then
+				if not format_on_save_enabled or vim.bo.filetype == "java" then
 					return
 				else
 					return {
@@ -67,6 +73,7 @@ return {
 			})
 		end, { desc = "Format file or range (in visual mode)" })
 
+		-- Add keymap to toggle format-on-save
 		vim.keymap.set("n", "<leader>tf", function()
 			format_on_save_enabled = not format_on_save_enabled
 			if format_on_save_enabled then

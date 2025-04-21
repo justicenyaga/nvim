@@ -1,3 +1,5 @@
+local trigger_text = ";"
+
 return {
 	"saghen/blink.cmp",
 	version = "1.*",
@@ -21,6 +23,9 @@ return {
 
 		-- Add lorem ipsum snippets to all file types
 		luasnip.filetype_extend("all", { "loremipsum" })
+		luasnip.filetype_extend("dart", { "flutter" })
+
+		vim.api.nvim_set_hl(0, "BlinkCmpKindCodeium", { fg = "#21d4fd" })
 
 		require("blink-cmp").setup({
 			enabled = function()
@@ -50,22 +55,82 @@ return {
 				},
 			},
 			sources = {
-				default = { "codeium", "lsp", "snippets", "buffer", "path" },
+				default = {
+					"codeium",
+					"obsidian",
+					"obsidian_new",
+					"obsidian_tags",
+					"lsp",
+					"snippets",
+					"buffer",
+					"path",
+				},
+				per_filetype = {
+					sql = { "snippets", "dadbod", "buffer" },
+				},
 				providers = {
 					dadbod = {
 						name = "Dadbod",
 						module = "vim_dadbod_completion.blink",
 					},
 					codeium = {
-						name = "codeium",
-						enabled = true,
-						module = "blink.compat.source",
+						name = "Codeium",
+						module = "codeium.blink",
+						enabled = false,
 						async = true,
+						transform_items = function(_, items)
+							for _, item in ipairs(items) do
+								item.kind_icon = "󱃖"
+								item.kind_name = "Codeium"
+							end
+							return items
+						end,
+					},
+					snippets = {
+						name = "snippets",
+						score_offset = 100,
+						should_show_items = function()
+							local col = vim.api.nvim_win_get_cursor(0)[2]
+							local before_cursor = vim.api.nvim_get_current_line():sub(1, col)
+							return before_cursor:match(trigger_text .. "%w*$") ~= nil
+						end,
+						transform_items = function(_, items)
+							local col = vim.api.nvim_win_get_cursor(0)[2]
+							local before_cursor = vim.api.nvim_get_current_line():sub(1, col)
+							local trigger_pos = before_cursor:find(trigger_text .. "[^" .. trigger_text .. "]*$")
+							if trigger_pos then
+								for _, item in ipairs(items) do
+									if not item.trigger_text_modified then
+										item.trigger_text_modified = true
+										item.textEdit = {
+											newText = item.insertText or item.label,
+											range = {
+												start = { line = vim.fn.line(".") - 1, character = trigger_pos - 1 },
+												["end"] = { line = vim.fn.line(".") - 1, character = col },
+											},
+										}
+									end
+								end
+							end
+							return items
+						end,
+					},
+					obsidian = {
+						name = "obsidian",
+						module = "blink.compat.source",
+					},
+					obsidian_new = {
+						name = "obsidian_new",
+						module = "blink.compat.source",
+					},
+					obsidian_tags = {
+						name = "obsidian_tags",
+						module = "blink.compat.source",
 					},
 				},
 			},
 			signature = {
-				enabled = true,
+				enabled = false,
 				window = { treesitter_highlighting = false },
 			},
 			completion = {
@@ -85,15 +150,42 @@ return {
 						components = {
 							kind_icon = {
 								text = function(ctx)
-									local icon = ctx.item.source_name == "codeium" and "󱃖" or ctx.kind_icon
+									local icon = ctx.kind_icon
+									if ctx.item.source_name == "LSP" then
+										local color_item = require("nvim-highlight-colors").format(
+											ctx.item.documentation,
+											{ kind = ctx.kind }
+										)
+										if color_item and color_item.abbr ~= "" then
+											icon = color_item.abbr
+										end
+									end
 									return icon .. ctx.icon_gap
+								end,
+								highlight = function(ctx)
+									if ctx.item.source_name == "Codeium" then
+										return {
+											{ group = "BlinkCmpKindCodeium", priority = 20000 },
+										}
+									elseif ctx.item.source_name == "LSP" then
+										local highlight = "BlinkCmpKind" .. ctx.kind
+										local color_item = require("nvim-highlight-colors").format(
+											ctx.item.documentation,
+											{ kind = ctx.kind }
+										)
+										if color_item and color_item.abbr_hl_group then
+											highlight = color_item.abbr_hl_group
+										end
+										return highlight
+									else
+										return {
+											{ group = ctx.kind_hl, priority = 20000 },
+										}
+									end
 								end,
 							},
 						},
 					},
-					auto_show = function(ctx)
-						return ctx.mode ~= "cmdline"
-					end,
 				},
 			},
 			appearance = {

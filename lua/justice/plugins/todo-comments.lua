@@ -1,7 +1,7 @@
 return {
 	"folke/todo-comments.nvim",
-	event = "VeryLazy",
 	dependencies = { "nvim-lua/plenary.nvim" },
+	event = "VeryLazy",
 	optional = true,
 	config = function()
 		local todo_comments = require("todo-comments")
@@ -24,8 +24,8 @@ return {
 	keys = {
 		{
 			"<leader>ft",
-			"<cmd>TodoQuickFix<cr>",
-			desc = "Open todos on quickfix list",
+			"<cmd>TodoQuickFix<CR>",
+			desc = "Open todos on quick fix list",
 		},
 	},
 }

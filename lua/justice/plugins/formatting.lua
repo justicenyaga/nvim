@@ -25,6 +25,7 @@ return {
 				go = { "goimports", "gofumpt" },
 				graphql = { "prettier" },
 				html = { "prettier" },
+				http = { "kulala" },
 				javascript = { "prettier" },
 				javascriptreact = { "prettier" },
 				json = { "prettier" },
@@ -50,6 +51,11 @@ return {
 						end
 						return { "--stdin-filepath", "$FILENAME", "--range", range }
 					end,
+				},
+				kulala = {
+					command = "kulala-fmt",
+					args = { "format", "$FILENAME" },
+					stdin = false,
 				},
 			},
 			format_on_save = function()

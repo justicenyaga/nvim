@@ -65,6 +65,7 @@ return {
 				"golangci-lint", -- Go linter
 				"golines", -- Go formatter
 				"isort", -- python formatter
+				"kulala-fmt", -- http formatter
 				"prettier", -- prettier formatter
 				"pylint", -- python linter
 				"stylua", -- lua formatter

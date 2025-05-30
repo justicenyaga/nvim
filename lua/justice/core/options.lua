@@ -103,9 +103,5 @@ opt.swapfile = false
 opt.conceallevel = 1
 
 -- undo
-local target_path = vim.fn.expand("~/.undodir")
-if vim.fn.isdirectory(target_path) == 0 then
-	vim.fn.mkdir(target_path, "p", 0700)
-end
-vim.opt.undodir = target_path
+vim.opt.undodir = vim.fn.expand("~/.undodir")
 vim.opt.undofile = true

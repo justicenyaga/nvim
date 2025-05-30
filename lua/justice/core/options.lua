@@ -34,6 +34,9 @@ opt.smartcase = true -- if you include mixed case in your search, assumes you wa
 -- cursor line
 opt.cursorline = true -- highlight the current cursor line
 
+-- blinking cursor
+opt.guicursor = "n-v-c:block-blinkwait300-blinkon200-blinkoff200,i-ci-ve:ver25-blinkwait300-blinkon200-blinkoff200"
+
 -- disable auto commenting new lines
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "*",

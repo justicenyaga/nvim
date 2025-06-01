@@ -66,9 +66,8 @@ opt.signcolumn = "yes" -- show sign column so that text doesn't shift
 -- backspace
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 
--- clipboard
-opt.clipboard = "unnamedplus" -- use system clipboard as default register
-
+-- Clipboard
+-- opt.clipboard = "unnamedplus" -- use system clipboard as default register
 -- Use clip on wsl
 if vim.fn.has("wsl") == 1 and not vim.g.vscode then
 	vim.g.clipboard = {

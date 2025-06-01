@@ -31,6 +31,12 @@ keymap("n", "]q", vim.cmd.cnext, { desc = "Next quickfix" })
 keymap("n", "<leader>fr", ":%s//gc<Left><Left><Left>", { desc = "Find and Replace" })
 keymap("n", "<leader>fR", ":%s/<C-r><C-w>//gc<Left><Left><Left>", { desc = "Find and replace word under cursor" })
 
+-- System clipboard
+keymap({ "n", "v" }, "<leader>y", '"+y', { desc = "Copy to system clipboard" })
+keymap({ "n", "v" }, "<leader>d", '"+d', { desc = "Cut to system clipboard" })
+keymap({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste from system clipboard" })
+keymap({ "n", "v" }, "<leader>P", '"+P', { desc = "Paste from system clipboard (before cursor)" })
+
 if vim.g.vscode then
 	require("justice.core.vscode_keymaps")
 else

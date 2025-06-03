@@ -1,5 +1,6 @@
 return {
 	"letieu/wezterm-move.nvim",
+	enabled = false,
 	keys = {
 		{
 			"<C-h>",

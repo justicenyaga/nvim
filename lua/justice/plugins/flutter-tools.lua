@@ -9,16 +9,19 @@ return {
 		config = function()
 			local util = require("justice.functions.util")
 
-			local flutter_path = ""
+			local flutter_path = nil
 			local analysisExcludedFolders = { ".dart_tool" }
 
 			if vim.fn.has("win32") == 1 then
 				flutter_path = "C:/Dart/flutter/bin/flutter.bat"
 				table.insert(analysisExcludedFolders, vim.fn.expand("$HOME/AppData/Local/Pub/Cache"))
+			else
+				table.insert(analysisExcludedFolders, vim.fn.expand("$HOME/.pub-cache"))
 			end
 
 			require("flutter-tools").setup({
 				flutter_path = flutter_path,
+				fvm = true,
 				ui = {
 					border = "rounded",
 					notification_style = "plugin",
@@ -103,6 +106,15 @@ return {
 				{ desc = "Toggle current flutter file widget tree" }
 			)
 			vim.keymap.set("n", "<leader>dq", ":FlutterQuit<cr>", { desc = "End running flutter session" })
+
+			-- Check if pubspec.yaml exists in the current directory
+			local pubspec_path = vim.fn.getcwd() .. "/pubspec.yaml"
+			local file_exists = vim.fn.filereadable(pubspec_path) == 1
+
+			-- Add keymap only if the file exists
+			if file_exists then
+				vim.keymap.set("n", "<leader>dp", "<cmd>e pubspec.yaml<cr>", { desc = "Open pubspec.yaml" })
+			end
 
 			vim.api.nvim_create_autocmd("BufReadPost", {
 				pattern = "pubspec.yaml",

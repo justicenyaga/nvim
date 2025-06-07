@@ -25,6 +25,13 @@ return {
 			},
 			opts = { log_level = "DEBUG" },
 			adapters = {
+				anthropic = function()
+					return require("codecompanion.adapters").extend("anthropic", {
+						env = {
+							api_key = "MY_ANTHROPIC_KEY",
+						},
+					})
+				end,
 				gemini = function()
 					return require("codecompanion.adapters").extend("gemini", {
 						env = {

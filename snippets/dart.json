@@ -1,0 +1,92 @@
+{
+  "Stateless Widget": {
+    "prefix": "stlessW",
+    "body": [
+      "import 'package:flutter/material.dart';\n",
+      "class ${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}} extends StatelessWidget {",
+      "  const ${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}}({super.key});\n",
+      "  @override",
+      "  Widget build(BuildContext context) {",
+      "    return ${0};",
+      "  }",
+      "}"
+    ],
+    "description": "Create a Stateless widget"
+  },
+  "Stateful Widget": {
+    "prefix": "stfulW",
+    "body": [
+      "import 'package:flutter/material.dart';\n",
+      "class ${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}} extends StatefulWidget {",
+      "  const ${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}}({super.key});\n",
+      "  @override",
+      "  State<${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}}> createState() => _${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}}State();",
+      "}\n",
+      "class _${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}}State extends State<${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}}> {",
+      "  @override",
+      "  Widget build(BuildContext context) {",
+      "    return ${0};",
+      "  }",
+      "}"
+    ],
+    "description": "Create a Stateful widget"
+  },
+  "Map Iterable": {
+    "prefix": "mapI",
+    "body": ["${1:iterable}.map((${2:element}) => ${3:});"]
+  },
+  "ListView.Builder": {
+    "prefix": "liviewB",
+    "body": [
+      "ListView.builder(",
+      "  itemCount: ${1:1},",
+      "  itemBuilder: (context, index) {",
+      "  return ${2:};",
+      " },",
+      "),"
+    ],
+    "description": "Creates a scrollable, linear array of widgets that are created on demand.Providing a non-null `itemCount` improves the ability of the [ListView] to estimate the maximum scroll extent."
+  },
+  "ListView.Separated": {
+    "prefix": "liviewS",
+    "body": [
+      "ListView.separated(",
+      "  itemCount: ${1:1},",
+      "  separatorBuilder: (context, index) {",
+      "  return ${2:};",
+      " },",
+      "  itemBuilder: (context, index) {",
+      "  return ${3:};",
+      " },",
+      "),"
+    ],
+    "description": "Creates a fixed-length scrollable linear array of list 'items' separated by list item 'separators'."
+  },
+  "GridView.Builder": {
+    "prefix": "grviewB",
+    "body": [
+      "GridView.builder(",
+      "  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(",
+      "    crossAxisCount: ${1:2},",
+      "  ),",
+      "  itemCount: ${2:2},",
+      "  itemBuilder: (context, index) {",
+      "    return ${3:};",
+      "  },",
+      "),"
+    ],
+    "description": "Creates a scrollable, 2D array of widgets that are created on demand. Providing a non-null `itemCount` improves the ability of the [GridView] to estimate the maximum scroll extent."
+  },
+  "Future Builder": {
+    "prefix": "futB",
+    "body": [
+      "FutureBuilder(",
+      "  future: ${1:Future},",
+      "  builder: (context, snapshot) {",
+      "    return ${3:};",
+      "  },",
+      "),"
+    ],
+    "description": "Creates a Future Builder. This builds itself based on the latest snapshot of interaction with a Future."
+  }
+}

@@ -89,7 +89,14 @@ return {
 		end,
 		config = function()
 			local mf = require("mini.files")
+			local mi = require("mini.icons")
 			mf.setup({
+				content = {
+					prefix = function(fs_entry)
+						local icon, hl = mi.get(fs_entry.fs_type, fs_entry.name)
+						return icon .. " ", hl
+					end,
+				},
 				mappings = {
 					go_in = "L",
 					go_in_plus = "l",

@@ -10,7 +10,7 @@ return {
 		elseif vim.fn.has("win32") == 1 then
 			vim.g.mkdp_browser = "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
 		else
-			vim.g.mkdp_browser = "google-chrome-stable"
+			vim.g.mkdp_browser = "microsoft-edge-stable"
 		end
 	end,
 	keys = {

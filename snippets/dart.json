@@ -88,5 +88,17 @@
       "),"
     ],
     "description": "Creates a Future Builder. This builds itself based on the latest snapshot of interaction with a Future."
+  },
+  "Snackbar": {
+    "prefix": "snackB",
+    "body": [
+      "ScaffoldMessenger.of(${1:context}).showSnackBar(",
+      "  SnackBar(",
+      "    content: ${2:content},",
+      "    duration: ${3:duration},",
+      "  ),",
+      ");"
+    ],
+    "description": "Create s Snackbar"
   }
 }

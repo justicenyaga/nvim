@@ -114,6 +114,8 @@ return {
 			-- Add keymap only if the file exists
 			if file_exists then
 				vim.keymap.set("n", "<leader>dp", "<cmd>e pubspec.yaml<cr>", { desc = "Open pubspec.yaml" })
+				vim.keymap.set("n", "<leader>dg", "<cmd>FlutterPubGet<cr>", { desc = "Get dependencies" })
+				vim.keymap.set("n", "<leader>du", "<cmd>FlutterPubUpgrade<cr>", { desc = "Upgrade dependencies" })
 			end
 
 			vim.api.nvim_create_autocmd("BufReadPost", {
@@ -151,6 +153,26 @@ return {
 		},
 		config = function()
 			require("pubspec-assist").setup()
+		end,
+	},
+	{
+		"wa11breaker/flutter-bloc.nvim",
+		dependencies = "nvimtools/none-ls.nvim",
+		ft = "dart",
+		opts = {
+			block_type = "default",
+			use_sealed_classes = false,
+			enable_code_actions = true,
+		},
+	},
+	{
+		"wa11breaker/dart-data-class-generator.nvim",
+		dependencies = {
+			"nvimtools/none-ls.nvim",
+		},
+		ft = "dart",
+		config = function()
+			require("dart-data-class-generator").setup({})
 		end,
 	},
 }

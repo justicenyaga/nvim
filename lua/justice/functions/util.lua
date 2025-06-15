@@ -93,8 +93,10 @@ local function lsp_on_attach(_, bufnr)
 		vim.diagnostic.jump({ count = 1, float = true })
 	end, opts) -- jump to next diagnostic in buffer
 
-	-- opts.desc = "Show documentation for what is under cursor"
-	-- vim.keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
+	opts.desc = "Show documentation for what is under cursor"
+	vim.keymap.set("n", "K", function()
+		vim.lsp.buf.hover({ border = "rounded" })
+	end, opts) -- show documentation for what is under cursor
 end
 
 local function get_flutter_commands()

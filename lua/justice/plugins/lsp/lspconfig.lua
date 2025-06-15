@@ -19,40 +19,15 @@ return {
 		-- import lspconfig plugin
 		local lspconfig = require("lspconfig")
 
-		local keymap = vim.keymap -- for conciseness
-
 		require("lspconfig.ui.windows").default_options.border = "rounded"
 		vim.diagnostic.config({
 			float = { border = "rounded" },
 		})
 
-		local opts = { noremap = true, silent = true }
-		local on_attach = function(client, bufnr)
-			opts.buffer = bufnr
+		local util = require("justice.functions.util")
 
-			-- set keybinds
-			opts.desc = "See available code actions"
-			keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
-
-			opts.desc = "Rename"
-			keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
-
-			opts.desc = "Go to previous diagnostic"
-			keymap.set("n", "[d", function()
-				vim.diagnostic.jump({ count = -1, float = true })
-			end, opts) -- jump to previous diagnostic in buffer
-
-			opts.desc = "Go to next diagnostic"
-			keymap.set("n", "]d", function()
-				vim.diagnostic.jump({ count = 1, float = true })
-			end, opts) -- jump to next diagnostic in buffer
-
-			opts.desc = "Show documentation for what is under cursor"
-			keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
-		end
-
-		-- used to enable autocompletion (assign to every lsp server config)
-		local capabilities = require("blink.cmp").get_lsp_capabilities()
+		local on_attach = util.lsp_on_attach
+		local capabilities = util.get_lsp_capabilities()
 
 		vim.diagnostic.config({
 			signs = {

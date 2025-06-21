@@ -5,8 +5,8 @@ return {
 		require("no-neck-pain").setup({
 			width = 125,
 			autocmds = {
-				enableOnVimEnter = "safe",
-				enableOnTabEnter = true,
+				-- enableOnVimEnter = "safe",
+				-- enableOnTabEnter = true,
 			},
 			mappings = { enabled = true },
 		})

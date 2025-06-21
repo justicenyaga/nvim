@@ -164,6 +164,18 @@ return {
 			use_sealed_classes = false,
 			enable_code_actions = true,
 		},
+		keys = {
+			{
+				"<leader>dc",
+				"<cmd>FlutterCreateCubit<cr>",
+				desc = "Create a Cubit",
+			},
+			{
+				"<leader>dC",
+				"<cmd>FlutterCreateBloc<cr>",
+				desc = "Create a Bloc",
+			},
+		},
 	},
 	{
 		"wa11breaker/dart-data-class-generator.nvim",

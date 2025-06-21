@@ -121,13 +121,13 @@ return {
 				end
 			end
 
-			vim.keymap.set(
-				"n",
-				"<leader>ee",
-				toggle_explorer_on_file,
-				{ desc = "Toggle file explorer on current file" }
-			)
-			vim.keymap.set("n", "<leader>ef", toggle_explorer, { desc = "Toggle file explorer" })
+			-- vim.keymap.set(
+			-- 	"n",
+			-- 	"<leader>ee",
+			-- 	toggle_explorer_on_file,
+			-- 	{ desc = "Toggle file explorer on current file" }
+			-- )
+			-- vim.keymap.set("n", "<leader>ef", toggle_explorer, { desc = "Toggle file explorer" })
 		end,
 	},
 }

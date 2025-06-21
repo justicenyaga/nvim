@@ -33,3 +33,16 @@ keymap("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  
 
 -- WakaTime
 keymap("n", "<leader>ct", ":WakaTimeToday<cr>", { desc = "Echo today's coding time" })
+
+vim.keymap.set("n", "<leader>R", function()
+	for name, _ in pairs(package.loaded) do
+		if name:match("^justice") then
+			package.loaded[name] = nil
+		end
+	end
+
+	dofile(vim.env.MYVIMRC or vim.fn.stdpath("config") .. "/init.lua")
+end, {
+	desc = "Reload Neovim config",
+	silent = true,
+})

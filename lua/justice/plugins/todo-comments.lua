@@ -21,11 +21,4 @@ return {
 			todo_comments.jump_prev()
 		end, { desc = "Previous todo comment" })
 	end,
-	keys = {
-		{
-			"<leader>ft",
-			"<cmd>TodoQuickFix<CR>",
-			desc = "Open todos on quick fix list",
-		},
-	},
 }

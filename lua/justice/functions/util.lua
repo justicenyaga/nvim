@@ -83,16 +83,6 @@ local function lsp_on_attach(_, bufnr)
 	opts.desc = "Rename"
 	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
 
-	opts.desc = "Go to previous diagnostic"
-	vim.keymap.set("n", "[d", function()
-		vim.diagnostic.jump({ count = -1, float = true })
-	end, opts) -- jump to previous diagnostic in buffer
-
-	opts.desc = "Go to next diagnostic"
-	vim.keymap.set("n", "]d", function()
-		vim.diagnostic.jump({ count = 1, float = true })
-	end, opts) -- jump to next diagnostic in buffer
-
 	opts.desc = "Show documentation for what is under cursor"
 	vim.keymap.set("n", "K", function()
 		vim.lsp.buf.hover({ border = "rounded" })

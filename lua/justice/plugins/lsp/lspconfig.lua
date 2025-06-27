@@ -22,6 +22,7 @@ return {
 		require("lspconfig.ui.windows").default_options.border = "rounded"
 		vim.diagnostic.config({
 			float = { border = "rounded" },
+			virtual_lines = { current_line = true },
 		})
 
 		local util = require("justice.functions.util")

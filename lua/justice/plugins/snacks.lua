@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
@@ -6,6 +7,7 @@ return {
 		return {
 			bigfile = { enabled = true },
 			quickfile = { enabled = false },
+			dashboard = { enabled = true },
 			words = { enabled = true },
 			input = { enabled = true },
 			notifier = { enabled = true, style = "fancy" },
@@ -189,7 +191,9 @@ return {
 		},
 		{
 			"<leader>ft",
-			"<cmd>TodoQuickFix<CR>",
+			function()
+				Snacks.picker.todo_comments()
+			end,
 			desc = "Find todos",
 		},
 		{
@@ -235,6 +239,20 @@ return {
 			desc = "Go to type definition",
 		},
 		{
+			"<leader>uu",
+			function()
+				Snacks.picker.undo()
+			end,
+			desc = "Undo History",
+		},
+		{
+			"<leader>.",
+			function()
+				Snacks.scratch()
+			end,
+			desc = "Toggle Scratch Buffer",
+		},
+		{
 			"]]",
 			function()
 				Snacks.words.jump(vim.v.count1)
@@ -251,4 +269,15 @@ return {
 			mode = { "n", "t" },
 		},
 	},
+	init = function()
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "VeryLazy",
+			callback = function()
+				-- Create some toggle mappings
+				Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>ul")
+				Snacks.toggle.treesitter():map("<leader>ut")
+				Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
+			end,
+		})
+	end,
 }

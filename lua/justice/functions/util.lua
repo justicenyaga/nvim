@@ -87,6 +87,9 @@ local function lsp_on_attach(_, bufnr)
 	vim.keymap.set("n", "K", function()
 		vim.lsp.buf.hover({ border = "rounded" })
 	end, opts) -- show documentation for what is under cursor
+
+	opts.desc = "Float next diagnostic"
+	vim.keymap.set("n", "<leader>D", vim.diagnostic.open_float, opts)
 end
 
 local function get_flutter_commands()

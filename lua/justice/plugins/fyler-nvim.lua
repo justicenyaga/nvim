@@ -5,16 +5,17 @@ return {
 		default_explorer = false,
 		close_on_select = false,
 		views = {
-			file_tree = {
+			explorer = {
 				width = 0.25,
 				kind = "split:left",
 			},
 		},
 		mappings = {
-			file_tree = {
+			explorer = {
 				n = {
 					["q"] = "CloseView",
 					["<CR>"] = "Select",
+					["<C-CR>"] = "SelectRecursive",
 				},
 			},
 		},

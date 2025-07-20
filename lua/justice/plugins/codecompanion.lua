@@ -37,13 +37,19 @@ return {
 						env = {
 							api_key = "GEMINI_API_KEY",
 						},
+						name = "gemini",
+						schema = {
+							model = { default = "gemini-2.5-flash" },
+							max_tokens = { default = 2048 },
+							reasoning_effort = { default = "none" },
+						},
 					})
 				end,
 				deepseekv3 = function()
 					return require("codecompanion.adapters").extend("openai_compatible", {
 						env = {
 							url = "https://openrouter.ai/api",
-							api_key = "API_KEY",
+							api_key = "OPENROUTER_API_KEY",
 							chat_url = "/v1/chat/completions",
 						},
 						schema = {

@@ -245,13 +245,13 @@ return {
 			end,
 			desc = "Undo History",
 		},
-		{
-			"<leader>.",
-			function()
-				Snacks.scratch()
-			end,
-			desc = "Toggle Scratch Buffer",
-		},
+		-- {
+		-- 	"<leader>.",
+		-- 	function()
+		-- 		Snacks.scratch()
+		-- 	end,
+		-- 	desc = "Toggle Scratch Buffer",
+		-- },
 		{
 			"]]",
 			function()

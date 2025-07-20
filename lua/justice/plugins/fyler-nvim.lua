@@ -7,7 +7,7 @@ return {
 		views = {
 			explorer = {
 				width = 0.25,
-				kind = "split:left",
+				kind = "split:leftmost",
 			},
 		},
 		mappings = {

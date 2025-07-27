@@ -1,12 +1,16 @@
 return {
 	"A7Lavinraj/fyler.nvim",
 	dependencies = { "echasnovski/mini.icons" },
+	branch = "stable",
 	opts = {
 		default_explorer = false,
-		close_on_select = false,
+		close_on_select = true,
+		indentscope = {
+			enabled = false,
+		},
 		views = {
 			explorer = {
-				width = 0.25,
+				width = 0.3,
 				kind = "split:leftmost",
 			},
 		},

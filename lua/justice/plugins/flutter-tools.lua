@@ -10,10 +10,18 @@ return {
 			local util = require("justice.functions.util")
 
 			local flutter_path = nil
-			local analysisExcludedFolders = { ".dart_tool" }
+			local analysisExcludedFolders = {
+				".dart_tool",
+				"build",
+				"ios",
+				"android",
+				".idea",
+				".vscode",
+				"test",
+				".git",
+			}
 
 			if vim.fn.has("win32") == 1 then
-				flutter_path = "C:/Dart/flutter/bin/flutter.bat"
 				table.insert(analysisExcludedFolders, vim.fn.expand("$HOME/AppData/Local/Pub/Cache"))
 			else
 				table.insert(analysisExcludedFolders, vim.fn.expand("$HOME/.pub-cache"))

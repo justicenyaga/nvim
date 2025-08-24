@@ -25,7 +25,8 @@ return {
 
 		require("ibl").setup({
 			indent = {
-				char = "│",
+				-- char = "│",
+				char = "╎",
 
 				smart_indent_cap = false,
 			},

@@ -4,7 +4,7 @@ return {
 	branch = "stable",
 	opts = {
 		default_explorer = false,
-		close_on_select = true,
+		close_on_select = false,
 		indentscope = {
 			enabled = false,
 		},

@@ -8,15 +8,17 @@ opt.number = true -- shows absolute line number on cursor line (when relative nu
 opt.scrolloff = 5 -- ensure that the cursor is 5 lines from top/bottom when scrolling
 
 -- tabs & indentation
-opt.tabstop = 4 -- 4 spaces for tabs
-opt.shiftwidth = 4 -- 4 spaces for indent width
+opt.tabstop = 2 -- 2 spaces for tabs
+opt.shiftwidth = 2 -- 2 spaces for indent width
 opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
+
+-- autocommand to use 4 spaces for tabs and indent width per filetype
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "js", "ts", "jsx", "tsx", "json", "dart", "fyler" },
+	pattern = { "java", "go", "python" },
 	callback = function()
-		vim.opt_local.tabstop = 2
-		vim.opt_local.shiftwidth = 2
+		vim.opt_local.tabstop = 4
+		vim.opt_local.shiftwidth = 4
 	end,
 })
 

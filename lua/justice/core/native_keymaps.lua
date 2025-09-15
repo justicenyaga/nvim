@@ -34,6 +34,9 @@ keymap("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  
 -- WakaTime
 keymap("n", "<leader>ct", ":WakaTimeToday<cr>", { desc = "Echo today's coding time" })
 
+-- Flog
+keymap("n", "<leader>gg", ":Flog<CR>", { noremap = true, silent = true, desc = "Open Git Graph" })
+
 vim.keymap.set("n", "<leader>R", function()
 	for name, _ in pairs(package.loaded) do
 		if name:match("^justice") then

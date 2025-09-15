@@ -70,13 +70,13 @@ return {
 			end,
 			desc = "Lazygit current file history",
 		},
-		{
-			"<leader>gg",
-			function()
-				Snacks.lazygit.log()
-			end,
-			desc = "Lazygit log",
-		},
+		-- {
+		-- 	"<leader>gg",
+		-- 	function()
+		-- 		Snacks.lazygit.log()
+		-- 	end,
+		-- 	desc = "Lazygit log",
+		-- },
 		{
 			"<leader>gB",
 			function()

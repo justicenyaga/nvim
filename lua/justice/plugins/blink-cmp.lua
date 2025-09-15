@@ -25,7 +25,7 @@ return {
 		luasnip.filetype_extend("all", { "loremipsum" })
 		luasnip.filetype_extend("dart", { "flutter" })
 
-		vim.api.nvim_set_hl(0, "BlinkCmpKindCodeium", { fg = "#21d4fd" })
+		-- vim.api.nvim_set_hl(0, "BlinkCmpKindCodeium", { fg = "#21d4fd" })
 
 		require("blink-cmp").setup({
 			enabled = function()
@@ -56,7 +56,7 @@ return {
 			},
 			sources = {
 				default = {
-					"codeium",
+					-- "codeium",
 					"obsidian",
 					"obsidian_new",
 					"obsidian_tags",
@@ -73,19 +73,18 @@ return {
 						name = "Dadbod",
 						module = "vim_dadbod_completion.blink",
 					},
-					codeium = {
-						name = "Codeium",
-						module = "codeium.blink",
-						enabled = false,
-						async = true,
-						transform_items = function(_, items)
-							for _, item in ipairs(items) do
-								item.kind_icon = "󱃖"
-								item.kind_name = "Codeium"
-							end
-							return items
-						end,
-					},
+					-- codeium = {
+					-- 	name = "Codeium",
+					-- 	module = "codeium.blink",
+					-- 	async = true,
+					-- 	transform_items = function(_, items)
+					-- 		for _, item in ipairs(items) do
+					-- 			item.kind_icon = "󱃖"
+					-- 			item.kind_name = "Codeium"
+					-- 		end
+					-- 		return items
+					-- 	end,
+					-- },
 					snippets = {
 						name = "snippets",
 						score_offset = 100,

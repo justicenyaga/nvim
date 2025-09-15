@@ -5,7 +5,6 @@
   "auto-session": { "branch": "main", "commit": "ee320d7a59c1dfe83df7c9d58150d9f194690d53" },
   "blink.cmp": { "branch": "main", "commit": "022521a8910a5543b0251b21c9e1a1e989745796" },
   "blink.compat": { "branch": "main", "commit": "2ed6d9a28b07fa6f3bface818470605f8896408c" },
-  "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
   "chkn.nvim": { "branch": "main", "commit": "e001519db4c789412ac5196d69797d5efd5f68a9" },
   "codecompanion.nvim": { "branch": "main", "commit": "3957049dfd9eed047ee23bc449f1c5e3fbf44a3f" },
   "codeium.nvim": { "branch": "main", "commit": "821b570b526dbb05b57aa4ded578b709a704a38a" },

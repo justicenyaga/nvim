@@ -88,6 +88,20 @@ return {
 					{ "filetype" },
 				},
 			},
+			tabline = {
+				lualine_b = {
+					{ "tabs", mode = 2, max_length = vim.o.columns },
+					{
+						function()
+							vim.o.showtabline = 1
+							return ""
+							--HACK: lualine will set &showtabline to 2 if you have configured
+							--lualine for displaying tabline. We want to restore the default
+							--behavior here.
+						end,
+					},
+				},
+			},
 			inactive_sections = {
 				lualine_c = {
 					"filename",

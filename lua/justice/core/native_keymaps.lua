@@ -30,6 +30,9 @@ keymap("n", "<leader>to", "<cmd>tabonly<CR>", { desc = "Close all other tabs lea
 keymap("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
 keymap("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
 keymap("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
+for i = 1, 9 do
+	keymap("n", "<leader>" .. i, "<cmd>" .. i .. "tabnext<CR>", { desc = "Go to tab " .. i }) -- Go to tab number using <leader>i where 1 <= i <= 9
+end
 
 -- WakaTime
 keymap("n", "<leader>ct", ":WakaTimeToday<cr>", { desc = "Echo today's coding time" })

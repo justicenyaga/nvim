@@ -80,12 +80,12 @@ return {
 		end, { desc = "Format file or range (in visual mode)" })
 
 		-- Add keymap to toggle format-on-save
-		vim.keymap.set("n", "<leader>tf", function()
+		vim.keymap.set("n", "<leader>uf", function()
 			format_on_save_enabled = not format_on_save_enabled
 			if format_on_save_enabled then
-				vim.notify("Format on save enabled", vim.log.levels.INFO)
+				vim.notify("Enabled Format On Save", vim.log.levels.INFO)
 			else
-				vim.notify("Format on save disabled", vim.log.levels.WARN)
+				vim.notify("Disabled Format On Save", vim.log.levels.WARN)
 			end
 		end, { desc = "Toggle format on save" })
 	end,

@@ -21,18 +21,17 @@ return {
 				win = {
 					input = {
 						keys = {
-							["<C-f>"] = { "toggle_follow", mode = { "i", "n" } },
-							["<C-h>"] = { "toggle_hidden", mode = { "i", "n" } },
-							["<C-p>"] = { "toggle_preview", mode = { "i", "n" } },
+							["<Esc>"] = { "close", mode = { "n", "i" } },
 							["<C-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
 							["<C-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
+							["<C-v>"] = { "edit_vsplit", mode = { "i", "n" } },
+							["<C-h>"] = { "edit_split", mode = { "i", "n" } },
 						},
 					},
 					list = {
 						keys = {
-							["<C-f>"] = "toggle_follow",
-							["<C-h>"] = "toggle_hidden",
-							["<C-p>"] = "toggle_preview",
+							["<C-v>"] = "edit_vsplit",
+							["<C-h>"] = "edit_split",
 							["<C-d>"] = "preview_scroll_down",
 							["<C-u>"] = "preview_scroll_up",
 						},

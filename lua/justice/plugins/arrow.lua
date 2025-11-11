@@ -1,7 +1,5 @@
 return {
-	"justicenyaga/arrow.nvim",
-	-- "otavioschwanck/arrow.nvim",
-	branch = "feat/windows-fs-support",
+	"otavioschwanck/arrow.nvim",
 	config = function()
 		require("arrow").setup({
 			leader_key = "m",

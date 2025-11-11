@@ -5,6 +5,13 @@ return {
 
 		auto_session.setup({
 			suppress_dirs = { "~/", "~/Desktop", "~/Documents", "~/Downloads", "~/projects" },
+
+			post_restore_cmds = {
+				function()
+					require("arrow.git").refresh_git_branch()
+					require("arrow.persist").load_cache_file()
+				end,
+			},
 		})
 
 		vim.keymap.set("n", "<leader>wr", ":SessionRestore<CR>", { desc = "Restore session for cwd" })

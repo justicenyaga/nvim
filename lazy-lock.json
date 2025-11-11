@@ -7,7 +7,6 @@
   "blink.compat": { "branch": "main", "commit": "2ed6d9a28b07fa6f3bface818470605f8896408c" },
   "chkn.nvim": { "branch": "main", "commit": "e001519db4c789412ac5196d69797d5efd5f68a9" },
   "codecompanion.nvim": { "branch": "main", "commit": "3957049dfd9eed047ee23bc449f1c5e3fbf44a3f" },
-  "codeium.nvim": { "branch": "main", "commit": "821b570b526dbb05b57aa4ded578b709a704a38a" },
   "conform.nvim": { "branch": "master", "commit": "02fd64fb3d4b18ec029c0e0683c3dc3ec6d2c5b8" },
   "dart-data-class-generator.nvim": { "branch": "main", "commit": "7bf16a14970c647f87d4061ac5aace3f292d744e" },
   "dropbar.nvim": { "branch": "master", "commit": "3460930700ca67b4590a69ac3f1d65d5f9658fb6" },

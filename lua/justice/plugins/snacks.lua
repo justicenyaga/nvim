@@ -26,6 +26,7 @@ return {
 							["<C-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
 							["<C-v>"] = { "edit_vsplit", mode = { "i", "n" } },
 							["<C-h>"] = { "edit_split", mode = { "i", "n" } },
+							["<C-y>"] = { "select_and_next", mode = { "i", "n" } },
 						},
 					},
 					list = {
@@ -34,6 +35,7 @@ return {
 							["<C-h>"] = "edit_split",
 							["<C-d>"] = "preview_scroll_down",
 							["<C-u>"] = "preview_scroll_up",
+							["<C-y>"] = { "select_and_next", mode = { "n", "x" } },
 						},
 					},
 				},

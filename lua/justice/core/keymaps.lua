@@ -30,6 +30,20 @@ keymap({ "n", "v" }, "<leader>d", '"+d', { desc = "Cut to system clipboard" })
 keymap({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste from system clipboard" })
 keymap({ "n", "v" }, "<leader>P", '"+P', { desc = "Paste from system clipboard (before cursor)" })
 
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "qf",
+	callback = function()
+		-- Do not show quickfix in buffer lists.
+		vim.api.nvim_set_option_value("buflisted", false, { buf = 0 })
+
+		local util = require("justice.functions.util")
+
+		keymap("n", "dd", util.delete_qf_items, { buffer = true, desc = "Remove quickfix item under cursor" })
+		keymap("x", "d", util.delete_qf_items, { buffer = true, desc = "Remove selected quickfix items" })
+	end,
+	desc = "Quickfix tweaks",
+})
+
 if vim.g.vscode then
 	require("justice.core.vscode_keymaps")
 else

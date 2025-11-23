@@ -7,8 +7,20 @@ return {
 				Snacks.rename.on_rename_file(src_path, dest_path)
 			end,
 		},
-		win = {
-			kind = "split_left_most",
+		views = {
+			finder = {
+				win = {
+					kind = "split_left_most",
+					kinds = {
+						split_left_most = {
+							width = "35%",
+							win_opts = {
+								winfixwidth = true,
+							},
+						},
+					},
+				},
+			},
 		},
 	},
 	keys = {

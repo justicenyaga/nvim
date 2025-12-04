@@ -152,16 +152,16 @@ return {
 		end,
 	},
 	{
-		-- "nvim-flutter/pubspec-assist.nvim",
-		"justicenyaga/pubspec-assist.nvim",
-		branch = "fix/add-dependencies-windows",
-		event = "BufReadPost pubspec.yaml",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		config = function()
-			require("pubspec-assist").setup()
-		end,
+		-- -- "nvim-flutter/pubspec-assist.nvim",
+		-- "justicenyaga/pubspec-assist.nvim",
+		-- branch = "fix/add-dependencies-windows",
+		-- event = "BufReadPost pubspec.yaml",
+		-- dependencies = {
+		-- 	"nvim-lua/plenary.nvim",
+		-- },
+		-- config = function()
+		-- 	require("pubspec-assist").setup()
+		-- end,
 	},
 	{
 		"wa11breaker/flutter-bloc.nvim",

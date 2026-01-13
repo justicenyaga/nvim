@@ -14,7 +14,7 @@
   "flutter-bloc.nvim": { "branch": "main", "commit": "691da474a32b65b1b808e679c73c320b122159fe" },
   "flutter-tools.nvim": { "branch": "main", "commit": "65b7399804315a1160933b64292d3c5330aa4e9f" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
-  "fyler.nvim": { "branch": "main", "commit": "2c990635e6cbde7bdbd2038ab2929dbb8236317e" },
+  "fyler.nvim": { "branch": "main", "commit": "5ef9d97b9292cee169ef0cfb865996f15ee9577a" },
   "gitsigns.nvim": { "branch": "main", "commit": "5f808b5e4fef30bd8aca1b803b4e555da07fc412" },
   "indent-blankline.nvim": { "branch": "master", "commit": "005b56001b2cb30bfa61b7986bc50657816ba4ba" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },

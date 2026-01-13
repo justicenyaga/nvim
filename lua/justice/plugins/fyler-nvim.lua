@@ -1,6 +1,7 @@
 return {
 	"A7Lavinraj/fyler.nvim",
 	dependencies = { "echasnovski/mini.icons", "folke/snacks.nvim" },
+	lazy = false,
 	opts = {
 		hooks = {
 			on_rename = function(src_path, dest_path)
@@ -13,7 +14,7 @@ return {
 					kind = "split_left_most",
 					kinds = {
 						split_left_most = {
-							width = "35%",
+							width = "25%",
 							win_opts = {
 								winfixwidth = true,
 							},

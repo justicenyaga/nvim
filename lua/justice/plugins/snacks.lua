@@ -207,35 +207,35 @@ return {
 		{
 			"gf",
 			function()
-				Snacks.picker.lsp_references({ layout = { preset = "vscode", preview = "main" } })
+				Snacks.picker.lsp_references()
 			end,
 			desc = "Show lsp references",
 		},
 		{
 			"gD",
 			function()
-				Snacks.picker.lsp_declarations({ layout = { preset = "vscode", preview = "main" } })
+				Snacks.picker.lsp_declarations()
 			end,
 			desc = "Go to declaration",
 		},
 		{
 			"gd",
 			function()
-				Snacks.picker.lsp_definitions({ layout = { preset = "vscode", preview = "main" } })
+				Snacks.picker.lsp_definitions()
 			end,
 			desc = "Go to definition",
 		},
 		{
 			"gi",
 			function()
-				Snacks.picker.lsp_implementations({ layout = { preset = "vscode", preview = "main" } })
+				Snacks.picker.lsp_implementations()
 			end,
 			desc = "Go to implementation",
 		},
 		{
 			"gt",
 			function()
-				Snacks.picker.lsp_type_definitions({ layout = { preset = "vscode", preview = "main" } })
+				Snacks.picker.lsp_type_definitions()
 			end,
 			desc = "Go to type definition",
 		},
@@ -271,6 +271,7 @@ return {
 		},
 	},
 	init = function()
+		vim.g.snacks_animate = false
 		vim.api.nvim_create_autocmd("User", {
 			pattern = "VeryLazy",
 			callback = function()

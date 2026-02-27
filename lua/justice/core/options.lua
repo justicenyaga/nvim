@@ -4,6 +4,9 @@ local opt = vim.opt -- for conciseness
 opt.relativenumber = true -- show relative line numbers
 opt.number = true -- shows absolute line number on cursor line (when relative number is on)
 
+-- Enable project specific configurations
+opt.exrc = true
+
 -- cursor position
 opt.scrolloff = 5 -- ensure that the cursor is 5 lines from top/bottom when scrolling
 

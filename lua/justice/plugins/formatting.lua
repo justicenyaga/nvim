@@ -2,15 +2,6 @@ return {
 	"stevearc/conform.nvim",
 	lazy = true,
 	event = { "BufReadPre", "BufNewFile" },
-	dependencies = {
-		{
-			"rust-lang/rust.vim",
-			ft = "rust",
-			init = function()
-				vim.g.rustfmt_autosave = 1
-			end,
-		},
-	},
 	config = function()
 		local conform = require("conform")
 

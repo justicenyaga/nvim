@@ -46,7 +46,6 @@ return {
 				"lua_ls",
 				"prismals",
 				"pyright",
-				"rust_analyzer",
 				"svelte",
 				"tailwindcss",
 				"ts_ls",
@@ -75,6 +74,7 @@ return {
 		mason_nvim_dap.setup({
 			-- list of debuger adapters for mason to install
 			ensure_installed = {
+				"codelldb", -- Rust debugger
 				"delve", -- Go debugger
 			},
 		})

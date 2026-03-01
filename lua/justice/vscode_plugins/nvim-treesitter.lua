@@ -1,64 +1,51 @@
 return {
-	{
-		"nvim-treesitter/nvim-treesitter",
-		event = "VeryLazy",
-		build = ":TSUpdate",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
-		},
-		config = function()
-			-- import nvim-treesitter plugin
-			local treesitter = require("nvim-treesitter.configs")
+	"nvim-treesitter/nvim-treesitter",
+	lazy = false,
+	branch = "main",
+	build = ":TSUpdate",
+	config = function()
+		require("nvim-treesitter").setup({
+			install_dir = vim.fn.stdpath("data") .. "/site",
+		})
 
-			-- configure treesitter
-			treesitter.setup({ -- enable syntax highlighting
-				highlight = {
-					enable = true,
-				},
-				-- enable indentation
-				indent = { enable = true },
-				-- ensure these language parsers are installed
-				ensure_installed = {
-					"bash",
-					"c",
-					"cpp",
-					"css",
-					"dart",
-					"dockerfile",
-					"gitignore",
-					"go",
-					"html",
-					"http",
-					"java",
-					"javascript",
-					"json",
-					"lua",
-					"markdown",
-					"markdown_inline",
-					"python",
-					"query",
-					"regex",
-					"rust",
-					"sql",
-					"tsx",
-					"typescript",
-					"vim",
-					"vimdoc",
-					"yaml",
-				},
-				incremental_selection = {
-					enable = true,
-					keymaps = {
-						init_selection = "<Enter>",
-						node_incremental = "<Enter>",
-						scope_incremental = false,
-						node_decremental = "<bs>",
-					},
-				},
-			})
+		-- Ensure installed parsers
+		require("nvim-treesitter").install({
+			"bash",
+			"c",
+			"cpp",
+			"css",
+			"dart",
+			"dockerfile",
+			"gitignore",
+			"go",
+			"html",
+			"http",
+			"java",
+			"javascript",
+			"json",
+			"lua",
+			"markdown",
+			"markdown_inline",
+			"python",
+			"query",
+			"regex",
+			"rust",
+			"sql",
+			"tsx",
+			"typescript",
+			"vim",
+			"vimdoc",
+			"yaml",
+		})
 
-			-- enable nvim-ts-context-commentstring plugin for commenting tsx and jsx
-			require("ts_context_commentstring").setup({})
-		end,
-	},
+		-- Enable highlighting and indentation
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = "*",
+			callback = function()
+				if pcall(vim.treesitter.start) then
+					vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				end
+			end,
+		})
+	end,
 }

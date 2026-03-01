@@ -5,16 +5,12 @@ return {
 		ft = "rust",
 		lazy = false,
 		config = function()
-			local util = require("justice.functions.util")
-			local mason_registry = require("mason-registry")
-			local codelldb = mason_registry.get_package("codelldb")
-			local extension_path = codelldb:get_install_path() .. "/extension/"
+			local extension_path = vim.fn.expand("$MASON/packages/codelldb/extension/")
 			local codelldb_path = extension_path .. "adapter/codelldb"
 			local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
 			local cfg = require("rustaceanvim.config")
 			vim.g.rustaceanvim = {
 				server = {
-					on_attach = util.lsp_on_attach,
 					default_settings = {
 						["rust-analyzer"] = {
 							cargo = {

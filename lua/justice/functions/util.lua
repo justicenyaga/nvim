@@ -68,30 +68,6 @@ local function open_in_tab(buf_name, starts_with, open_fn)
 	end
 end
 
-local function get_lsp_capabilities()
-	return require("blink.cmp").get_lsp_capabilities()
-end
-
-local function lsp_on_attach(_, bufnr)
-	local opts = { noremap = true, silent = true }
-	opts.buffer = bufnr
-
-	-- set keybinds
-	opts.desc = "See available code actions"
-	vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
-
-	opts.desc = "Rename"
-	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
-
-	opts.desc = "Show documentation for what is under cursor"
-	vim.keymap.set("n", "K", function()
-		vim.lsp.buf.hover({ border = "rounded" })
-	end, opts) -- show documentation for what is under cursor
-
-	opts.desc = "Float next diagnostic"
-	vim.keymap.set("n", "<leader>D", vim.diagnostic.open_float, opts)
-end
-
 local function get_flutter_commands()
 	return flutter_commands
 end
@@ -145,8 +121,6 @@ return {
 	press_enter = press_enter,
 	string_starts = string_starts,
 	open_in_tab = open_in_tab,
-	get_lsp_capabilities = get_lsp_capabilities,
-	lsp_on_attach = lsp_on_attach,
 	get_flutter_commands = get_flutter_commands,
 	delete_qf_items = delete_qf_items,
 }

@@ -55,8 +55,6 @@ return {
 					open_cmd = "tabedit",
 				},
 				lsp = {
-					capabilities = util.get_lsp_capabilities(),
-					on_attach = util.lsp_on_attach,
 					settings = {
 						showTodos = true,
 						completeFunctionCalls = true,

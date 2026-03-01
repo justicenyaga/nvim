@@ -16,6 +16,11 @@ return {
 		},
 	},
 	config = function()
+		-- local capabilities = require("blink.cmp").get_lsp_capabilities()
+		-- vim.lsp.config("*", {
+		-- 	capabilities = capabilities,
+		-- })
+
 		local luasnip = require("luasnip")
 
 		-- Loads vscode style snippets from installed plugins (e.g. friendly-snippets)
@@ -57,9 +62,9 @@ return {
 			sources = {
 				default = {
 					-- "codeium",
-					"obsidian",
-					"obsidian_new",
-					"obsidian_tags",
+					-- "obsidian",
+					-- "obsidian_new",
+					-- "obsidian_tags",
 					"lsp",
 					"snippets",
 					"buffer",

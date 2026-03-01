@@ -2,6 +2,7 @@ return {
 	{
 		"mrcjkb/rustaceanvim",
 		version = "^6",
+		enabled = false,
 		ft = "rust",
 		lazy = false,
 		config = function()
@@ -27,6 +28,7 @@ return {
 	},
 	{
 		"saecki/crates.nvim",
+		enabled = false,
 		event = { "BufRead Cargo.toml" },
 		config = function()
 			require("crates").setup()

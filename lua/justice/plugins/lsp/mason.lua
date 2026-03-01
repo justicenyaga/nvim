@@ -14,6 +14,7 @@ return {
 				"lua_ls",
 				"prismals",
 				"pyright",
+				"rust_analyzer",
 				"svelte",
 				"tailwindcss",
 				"ts_ls",

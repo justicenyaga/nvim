@@ -272,6 +272,7 @@ return {
 	},
 	init = function()
 		vim.g.snacks_animate = false
+
 		vim.api.nvim_create_autocmd("User", {
 			pattern = "VeryLazy",
 			callback = function()
@@ -279,6 +280,18 @@ return {
 				Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>ul")
 				Snacks.toggle.treesitter():map("<leader>ut")
 				Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
+			end,
+		})
+
+		vim.api.nvim_create_autocmd("TermOpen", {
+			callback = function(ev)
+				local bufname = vim.api.nvim_buf_get_name(ev.buf)
+				if bufname:match("lazygit") or vim.b[ev.buf].snacks_terminal then
+					local keys = { "<C-h>", "<C-j>", "<C-k>", "<C-l>", "<C-\\>" }
+					for _, key in ipairs(keys) do
+						vim.keymap.set("t", key, key, { buffer = ev.buf, noremap = true })
+					end
+				end
 			end,
 		})
 	end,

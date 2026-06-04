@@ -50,7 +50,8 @@ return {
 				},
 			},
 			format_on_save = function()
-				if not format_on_save_enabled or vim.bo.filetype == "java" then
+				local disabled_languages = { "java", "c" }
+				if not format_on_save_enabled or vim.tbl_contains(disabled_languages, vim.bo.filetype) then
 					return
 				else
 					return {

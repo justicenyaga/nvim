@@ -8,8 +8,21 @@ return {
 		"rafamadriz/friendly-snippets",
 		"saghen/blink.compat",
 		"onsails/lspkind.nvim",
-		{ "L3MON4D3/LuaSnip", version = "v2.*" },
-		{ "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+		{
+			"kristijanhusak/vim-dadbod-completion",
+			ft = { "sql", "mysql", "plsql" },
+			lazy = true,
+		},
+		{
+			"L3MON4D3/LuaSnip",
+			version = "v2.*",
+			event = "LspAttach",
+			build = "make install_jsregexp",
+			init = function()
+				require("luasnip.loaders.from_vscode").lazy_load()
+				require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
+			end,
+		},
 		{
 			"r5n-labs/vscode-react-javascript-snippets",
 			build = "yarn install --frozen-lockfile && yarn compile",

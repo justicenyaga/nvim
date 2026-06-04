@@ -4,7 +4,6 @@
   "arrow.nvim": { "branch": "master", "commit": "6e0f726f55f99332dd726a53effd6813786b6d49" },
   "blink.cmp": { "branch": "main", "commit": "4b18c32adef2898f95cdef6192cbd5796c1a332d" },
   "blink.compat": { "branch": "main", "commit": "1454f14a8d855a578ceeba77c62538fa1459a67c" },
-  "codecompanion.nvim": { "branch": "main", "commit": "758e3fbb357a49ba823d6498eb745b0deec64abc" },
   "conform.nvim": { "branch": "master", "commit": "e969e302bced7ffb9a0a0323629f31feb0ca35a6" },
   "crates.nvim": { "branch": "main", "commit": "ac9fa498a9edb96dc3056724ff69d5f40b898453" },
   "dart-data-class-generator.nvim": { "branch": "main", "commit": "7bf16a14970c647f87d4061ac5aace3f292d744e" },

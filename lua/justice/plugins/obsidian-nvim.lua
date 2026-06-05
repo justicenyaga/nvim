@@ -85,3 +85,20 @@ return {
 		keymap.set("n", "<leader>oc", ":!oc<cr>", { silent = true, desc = "Stage & commit reviewed notes separately" })
 	end,
 }
+
+-- return {
+-- 	"obsidian-nvim/obsidian.nvim",
+-- 	version = "*", -- use latest release, remove to use latest commit
+-- 	enabled = false,
+-- 	ft = "markdown",
+-- 	---@module 'obsidian'
+-- 	---@type obsidian.config
+-- 	opts = {
+-- 		workspaces = {
+-- 			{
+-- 				name = "Deez Notes",
+-- 				path = "~/obsidian",
+-- 			},
+-- 		},
+-- 	},
+-- }

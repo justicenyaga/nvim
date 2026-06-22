@@ -7,7 +7,11 @@ return {
 		return {
 			bigfile = { enabled = true },
 			quickfile = { enabled = false },
-			dashboard = { enabled = true },
+			dashboard = {
+				preset = {
+					header = "",
+				},
+			},
 			words = { enabled = true },
 			input = { enabled = true },
 			notifier = { enabled = true, style = "fancy" },

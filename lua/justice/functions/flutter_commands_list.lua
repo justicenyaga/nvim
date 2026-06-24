@@ -7,6 +7,13 @@ local flutter_commands = {
 		end,
 	},
 	{
+		text = "Run (Web)",
+		label = "Run Web: Start project on Chrome port 3000",
+		execute = function()
+			vim.cmd("FlutterRun --web-port 3000 -d chrome")
+		end,
+	},
+	{
 		text = "List Devices",
 		label = "List Devices: Show available physical devices",
 		execute = function()

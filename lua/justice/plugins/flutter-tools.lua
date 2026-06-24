@@ -112,6 +112,12 @@ return {
 				{ desc = "Toggle current flutter file widget tree" }
 			)
 			vim.keymap.set("n", "<leader>dq", ":FlutterQuit<cr>", { desc = "End running flutter session" })
+			vim.keymap.set(
+				"n",
+				"<leader>dw",
+				":FlutterRun --web-port 3000 -d chrome<cr>",
+				{ desc = "Run on web (port 3000)", silent = true }
+			)
 
 			-- Check if pubspec.yaml exists in the current directory
 			local pubspec_path = vim.fn.getcwd() .. "/pubspec.yaml"

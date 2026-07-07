@@ -38,7 +38,8 @@ end
 keymap("n", "<leader>ct", ":WakaTimeToday<cr>", { desc = "Echo today's coding time" })
 
 -- Flog
-keymap("n", "<leader>gg", ":Flog<CR>", { noremap = true, silent = true, desc = "Open Git Graph" })
+-- Replaced with gitgraph.nvim plugin keybind
+-- keymap("n", "<leader>gg", ":Flog<CR>", { noremap = true, silent = true, desc = "Open Git Graph" })
 
 vim.keymap.set("n", "<leader>R", function()
 	for name, _ in pairs(package.loaded) do

@@ -61,7 +61,7 @@ return {
 				win = {
 					input = {
 						keys = {
-							["<Esc>"] = { "close", mode = { "n", "i" } },
+							["<Esc>"] = { "close", mode = { "n" } },
 							["<C-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
 							["<C-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
 							["<C-v>"] = { "edit_vsplit", mode = { "i", "n" } },
